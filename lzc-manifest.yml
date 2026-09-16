@@ -6,11 +6,10 @@ application:
   upstreams:
     - location: /
       backend: http://barkeep:3000/
-
 services:
   barkeep:
-    # upstream: ghcr.io/nckslvrmn/bar_keep:v0.2.4
-    image: ghcr.1ms.run/nckslvrmn/bar_keep:v0.2.4
+    # upstream: ghcr.io/nckslvrmn/bar_keep:v0.5.0
+    image: ghcr.1ms.run/nckslvrmn/bar_keep:v0.5.0
     environment:
       - RAILS_ENV=production
       - SECRET_KEY_BASE={{ stable_secret "secrt-key-base" }}
