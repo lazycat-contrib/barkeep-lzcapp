@@ -1,0 +1,14 @@
+package: cloud.lazycat.app.barkeep
+version: 0.2.4
+name: BarKeep
+description: "A simple inventory manager for your home bar"
+min_os_version: "1.5.0"
+homepage: https://github.com/nckslvrmn/bar_keep
+author: nckslvrmn
+locales:
+  zh:
+    description: "为家庭酒吧打造的简易库存管理器"
+    name: BarKeep
+  en:
+    description: "A simple inventory manager for your home bar"
+    name: BarKeep

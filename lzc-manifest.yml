@@ -1,0 +1,20 @@
+application:
+  subdomain: barkeep
+  background_task: true
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://barkeep:3000/
+
+services:
+  barkeep:
+    # upstream: ghcr.io/nckslvrmn/bar_keep:v0.2.4
+    image: ghcr.1ms.run/nckslvrmn/bar_keep:v0.2.4
+    environment:
+      - RAILS_ENV=production
+      - SECRET_KEY_BASE={{ stable_secret "secrt-key-base" }}
+      - ALLOWED_HOST={{.S.AppDomain}}
+      - FORCE_SSL=false
+    binds:
+      - /lzcapp/var/data:/app/storage

@@ -1,0 +1,40 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/barkeep.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: barkeep
+
+build:
+  run_buildscript: false
+
+images:
+  # 上游有完整 v 前缀三段 SemVer tag（v0.2.2 ~ v0.5.0），排除 latest
+  - id: barkeep
+    target: service
+    service: barkeep
+    source: ghcr.io/nckslvrmn/bar_keep
+    channel: stable
+    sort: semver
+    tag_regex: '^v?\d+\.\d+\.\d+$'
+    delivery:
+      mode: mirror
+
+stores:
+  official:
+    # Official store publication is intentionally disabled; publish only to Miaomiao Store.
+    enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: BarKeep
+    summary: "A simple inventory manager for your home bar"
